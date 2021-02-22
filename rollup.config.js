@@ -21,11 +21,10 @@ export default {
     },
   ],
   plugins: [
-    external({
-      includeDependencies: true,
-    }),
+    external(),
     babel({
       babelrc: false,
+      babelHelpers: "bundled",
       extensions: EXTENSIONS,
       presets: [
         ["@babel/preset-env", { modules: false }],
@@ -33,13 +32,8 @@ export default {
       ],
       exclude: ["node_modules/**"],
     }),
-    commonjs({
-      include: /node_modules/,
-    }),
-    resolve({
-      extensions: EXTENSIONS,
-      preferBuiltins: false,
-    }),
+    commonjs(),
+    resolve(),
     del({ targets: ["dist/*"] }),
   ],
 };
